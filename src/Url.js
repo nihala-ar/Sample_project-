@@ -1,0 +1,1 @@
+export const apiNew = "http://localhost:5010/test";
