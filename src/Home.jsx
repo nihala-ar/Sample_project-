@@ -17,6 +17,15 @@ function Home() {
   const [first, setfirst] = useState([]);
   const navigate =  useNavigate()
 
+  const del = (_id)=>{
+
+     axios.delete(`http://localhost:5010/del/${_id}`).then((res)=>{
+      
+     }) 
+     alert("deleted")
+     //for delete to work we remove dependecy array completely from useeffect
+  }
+
 
   const logout =()=>{
     localStorage.removeItem("user")
@@ -50,7 +59,7 @@ function Home() {
 
   useEffect(() => {
     new1();
-  }, []);
+  }, );
 
   // console.log(setfirst)
 
@@ -71,11 +80,13 @@ function Home() {
               <Nav.Link href="#action1">
                 <Link to="/login">Login</Link>
               </Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
+              <Nav.Link href="#action2">
+              <Link to="/">Signup</Link>
+
+              </Nav.Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
-                  Another action
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action5">
@@ -105,19 +116,19 @@ function Home() {
        <br />
        <br />
 
-      {first.map((item) => {
+      {/* {first.map((item) => {
         return (
           <>
             <h3>name : {item.name}</h3>
             <p>age : {item.age}</p>
           </>
         );
-      })}
+      })} */}
 
       {data.map((val) => {
         return (
           <>
-            <h3>email : {val.email}</h3>
+            <h3><button style={{backgroundColor:"white",border:0}} onClick={()=>del(val._id)}>email : {val.email}</button></h3>
             <p>password : {val.password}</p>
             <p>id : {val._id}</p>
           </>
