@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
@@ -9,19 +9,30 @@ const login = "http://localhost:5010/login";
 console.log("hello")
 
 
+
 function Navbar() {
   const navigate = useNavigate();
 
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
+  console.log("console console"); 
+
+  useEffect(() => {
+    const exist = JSON.parse(localStorage.getItem("user"));
+    if (exist) {
+      navigate("/home");
+    }
+  });
+
   const submit = () => {
     if (!password || !email) {
       alert("Please enter details");
     } else {
-      console.log(email, password);
+      // console.log(email, password);
 
       axios.post(login, { email, password }).then((res) => {
+        console.log(res.data); 
         let error = res.data.isError;
         if (error) {
           console.log("error");

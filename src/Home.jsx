@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiNew } from "./Url";
 import Card from "react-bootstrap/Card";
@@ -15,6 +15,13 @@ const dataAdd = "http://localhost:5010/add";
 
 function Home() {
   const [first, setfirst] = useState([]);
+  const navigate =  useNavigate()
+
+
+  const logout =()=>{
+    localStorage.removeItem("user")
+    navigate("/login")
+  }
 
   // useEffect(() => {
   // axios.get(apiNew).then((res)=>{
@@ -92,6 +99,11 @@ function Home() {
         </Container>
       </Navbar>
       <br />
+      <br />
+
+       <button onClick={logout}>LOGOUT</button>
+       <br />
+       <br />
 
       {first.map((item) => {
         return (

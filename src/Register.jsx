@@ -19,6 +19,13 @@ function Register() {
   console.log("hi");
   console.log("hello");
 
+  useEffect(() => {
+    const exist = JSON.parse(localStorage.getItem("user"));
+    if (exist) {
+      navigate("/home");
+    }
+  });
+
   const submit = () => {
     // console.log(name, email, password)
     // axios.post(dataAdd,{name,email,password}).then((res)=>{
@@ -36,7 +43,7 @@ function Register() {
       alert("Please fill every column");
     } else {
       axios.post(hashedP, { name, email, password }).then((res) => {
-        // console.log(res.data)
+        console.log(res.data);
 
         let error = res.data.isError;
         if (error) {

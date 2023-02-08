@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Home from "./Home";
+
 import Navbar from "./Navbar";
 import Register from "./Register";
 
@@ -17,6 +18,7 @@ function UserRoutes() {
   return (
     <div>
       <BrowserRouter>
+      
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Navbar />} />
